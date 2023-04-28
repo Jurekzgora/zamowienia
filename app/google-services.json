@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "936241692684",
+    "project_id": "dagrasso-zamowienia",
+    "storage_bucket": "dagrasso-zamowienia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936241692684:android:d53ae64067ff1c8306ae29",
+        "android_client_info": {
+          "package_name": "com.example.zamwienia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936241692684-j4nsk79im6f7t2oon1f0l6hkvo7qg6c7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrKxT0Nx4kS3Q1EMMXdvRW0QeSGB8hsgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936241692684-j4nsk79im6f7t2oon1f0l6hkvo7qg6c7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
