@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     private val handler = Handler()
     private lateinit var currentTimeTextView: TextView
 
+    //database
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

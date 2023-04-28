@@ -14,6 +14,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class NoweZamowienie : AppCompatActivity() {
@@ -31,43 +32,57 @@ class NoweZamowienie : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        val editText = findViewById<EditText>(R.id.czas)
-        val editText1 = findViewById<EditText>(R.id.czas1)
+        val eTstreet = findViewById<EditText>(R.id.eTstreet)
+        val eThouseNo = findViewById<EditText>(R.id.eThouseNo)
+        val eTphoneNo = findViewById<EditText>(R.id.eTphoneNo)
+        val eTdeliveryTimeMax = findViewById<EditText>(R.id.eTdeliveryTimeMax)
+        val eTdeliveryTime = findViewById<EditText>(R.id.eTdeliveryTime)
         val ok_button = findViewById<Button>(R.id.ok_order_button)
+
+
+
         //editText.inputType = InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME
 
-        editText.setOnClickListener {
+        eTdeliveryTimeMax.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 cal.set(Calendar.MINUTE, minute)
-                editText.setText(SimpleDateFormat("HH:mm").format(cal.time))
+                eTdeliveryTimeMax.setText(SimpleDateFormat("HH:mm").format(cal.time))
             }
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
 
-        editText1.setOnClickListener {
+        eTdeliveryTime.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 cal.set(Calendar.MINUTE, minute)
-                editText1.setText(SimpleDateFormat("HH:mm").format(cal.time))
+                eTdeliveryTime.setText(SimpleDateFormat("HH:mm").format(cal.time))
             }
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
+
+
+
 
         // przycisk OK
 
-        val order = hashMapOf(
-            "deliveryTime" to "15:33",
-            "deliveryTimeMax" to "15:50",
-            "houseNo" to 33,
-            "phoneNo" to "+48555666777",
-            "street" to "Bema,"
-        )
+
 
         ok_button.setOnClickListener {
+
+
+
+            val order = hashMapOf(
+                "deliveryTime" to eTdeliveryTime.text.toString(),
+                "deliveryTimeMax" to eTdeliveryTimeMax.text.toString(),
+                "houseNo" to eThouseNo.text.toString(),
+                "phoneNo" to eTphoneNo.text.toString(),
+                "street" to eTstreet.text.toString()
+            )
+
+
             db.collection("orders")
                 .add(order)
                 .addOnSuccessListener { documentReference ->
@@ -76,6 +91,8 @@ class NoweZamowienie : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)
                 }
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
