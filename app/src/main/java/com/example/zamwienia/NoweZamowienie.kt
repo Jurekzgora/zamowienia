@@ -9,12 +9,13 @@ import android.text.InputType
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 
 class NoweZamowienie : AppCompatActivity() {
@@ -22,10 +23,11 @@ class NoweZamowienie : AppCompatActivity() {
     val db = Firebase.firestore
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nowe_zamowienie)
+
+
 
         val addBackButton = findViewById<Button>(R.id.back_button)
         addBackButton.setOnClickListener {
@@ -71,9 +73,6 @@ class NoweZamowienie : AppCompatActivity() {
 
 
         ok_button.setOnClickListener {
-
-
-
             val order = hashMapOf(
                 "deliveryTime" to eTdeliveryTime.text.toString(),
                 "deliveryTimeMax" to eTdeliveryTimeMax.text.toString(),

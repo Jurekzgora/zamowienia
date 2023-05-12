@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     private val handler = Handler()
     private lateinit var currentTimeTextView: TextView
 
+
+
+
     //database
 
 

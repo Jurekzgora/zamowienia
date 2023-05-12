@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">zamówienia</string>
     <string name="choose_time">Wybierz czas</string>
+    <string name="order_details">Dane zamówienia:</string>
+    <string name="delivery_adres">Adres dostawy</string>
+    <string name="street">Ulica</string>
+    <string name="house_no">Nr</string>
+    <string name="phone_number">Numer telefonu:</string>
+    <string name="numberOfPhone">123456789</string>
+    <string name="deliveryTimeMax">Dostawa do godziny:</string>
+    <string name="deliveryTime">Dostawa na godzinę:</string>
 </resources>
