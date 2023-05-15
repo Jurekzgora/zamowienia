@@ -35,25 +35,7 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(runnable, 0)
 
         val tVorders = findViewById<TextView>(R.id.tVorders)
-        val ordersDisplay = hashMapOf<String, String>(
-        )
 
-
-
-//        db.collection("orders")
-//            .get()
-//            .addOnSuccessListener { result ->
-//                for (document in result){
-//                    Log.d(TAG, "${document.id} => ${document.data.get("street")}")
-//                    ordersDisplay.put("street", "${document.data.get("street")}")
-//                    //tVorders.setText("${document.data.get("street")}")
-//                }
-//                println(ordersDisplay)
-//
-//            }
-//            .addOnFailureListener{ exception ->
-//                Log.w(TAG, "jakis blad", exception)
-//            }
 
         val ordersRef = FirebaseFirestore.getInstance().collection("orders")
 // Pobieranie dokumentów z kolekcji "orders"
