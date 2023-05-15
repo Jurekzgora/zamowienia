@@ -1,8 +1,10 @@
 package com.example.zamwienia
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +12,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,44 +56,37 @@ class MainActivity : AppCompatActivity() {
 //            }
 
         val ordersRef = FirebaseFirestore.getInstance().collection("orders")
-// Pobieranie dokumentów z kolekcji "books"
+// Pobieranie dokumentów z kolekcji "orders"
         ordersRef.get().addOnSuccessListener { documents ->
             // Tworzenie listy obiektów Order na podstawie pobranych dokumentów
             val orderList = ArrayList<Order>()
-            //to dodałem
             val ordersText = StringBuilder()
             for (document in documents) {
-                //to dodałem
-                val street = document.getString("street")
-                val houseNo = document.getString("houseNo")
-                val phoneNo = document.getString("phoneNo")
-                val deliveryTime = document.getString("deliveryTime")
-                val deliveryTimeMax = document.getString("deliveryTimeMax")
 
                 var order = Order(
                     "${document.data["street"]}",
                     "${document.data["houseNo"]}",
                     "${document.data["phoneNo"]}",
                     "${document.data["deliveryTime"]}",
-                    "${document.data["deliveryTimeMax"]}"
+                    "${document.data["deliveryTimeMax"]}",
+                    "${document.data["deliveryTimes"]}"
                 )
                 orderList.add(order)
 
-
-                // Tworzenie obiektu Book na podstawie danych z dokumentu Firestore
-//                order = document.toObject(Order::class.java)
-//                orderList.add(order)
             }
 
-            val sortedOrderList = orderList.sortedWith(compareBy<Order> { it.deliveryTime }.thenBy  { it.deliveryTimeMax })
+
+            val sortedOrderList = orderList.sortedWith(compareBy<Order>{it.deliveryTimes})
+
             for (order in sortedOrderList) {
-                // to dodałem
                 ordersText.append("${order.street} ${order.houseNo} ${order.phoneNo} ${order.deliveryTime} ${order.deliveryTimeMax} \n")}
                 tVorders.text = ordersText.toString()
-            // Wyświetlenie listy obiektów Book
-            // to na razie usunąłem
-           // tVorders.setText(orderList[4].street + orderList[4].phoneNo + orderList[2].street + orderList[2].phoneNo)
+
         }
+            .addOnFailureListener{ exception ->
+              Log.w(TAG, "jakis blad", exception)
+            }
+
 
 
     }

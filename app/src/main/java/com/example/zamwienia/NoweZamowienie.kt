@@ -38,7 +38,7 @@ class NoweZamowienie : AppCompatActivity() {
         val eTdeliveryTimeMax = findViewById<EditText>(R.id.eTdeliveryTimeMax)
         val eTdeliveryTime = findViewById<EditText>(R.id.eTdeliveryTime)
         val ok_button = findViewById<Button>(R.id.ok_order_button)
-
+        var deliveryTimes: String = ""
 
 
         //editText.inputType = InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME
@@ -72,14 +72,18 @@ class NoweZamowienie : AppCompatActivity() {
 
         ok_button.setOnClickListener {
 
-
+            if (eTdeliveryTime.length()>1)
+                deliveryTimes = eTdeliveryTime.text.toString()
+            else
+                deliveryTimes = eTdeliveryTimeMax.text.toString()
 
             val order = hashMapOf(
                 "deliveryTime" to eTdeliveryTime.text.toString(),
                 "deliveryTimeMax" to eTdeliveryTimeMax.text.toString(),
                 "houseNo" to eThouseNo.text.toString(),
                 "phoneNo" to eTphoneNo.text.toString(),
-                "street" to eTstreet.text.toString()
+                "street" to eTstreet.text.toString(),
+                "deliveryTimes" to deliveryTimes
             )
 
 
